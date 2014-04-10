@@ -21,7 +21,7 @@ module WebLogin
 
       def mount_engine
         inject_into_file routes_path, :after => "Application.routes.draw do\n" do
-          "  mount WebLogin::Engine\n"
+          "  mount WebLogin::Engine => '/authentication' \n"
         end
       end
 
