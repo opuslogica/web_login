@@ -19,35 +19,37 @@ module WebLogin
     }
 
     class << self
+      # Set the authentication callback, which by default does
+      # nothing.
       def authenticate_with(&blk)
         @authenticate = blk if blk
         @authenticate || DEFAULT_AUTHENTICATION
       end
 
+      # Set the sign up callback, which by default does not exist.
       def sign_up_with(&blk)
         @signup = blk if blk
         @signup
       end
 
-
-      def model=(model)
-        @credential_model = model
-      end
-
-      def model
-        @credential_model
-      end
-      
+      # Set the callback by which referenced credentials are stored in
+      # the session.  By default, they are treated as ActiveRecord
+      # objects.
       def sessionize_with(&blk)
         @sessionize = blk if blk
         @sessionize || DEFAULT_SESSIONIZE
       end
 
+      # Set the callback by which referenced credentials are
+      # instantiated from the session.  By default, they are treated
+      # as ActiveRecord objects.
       def desessionize_with(&blk)
         @desessionize = blk if blk
         @desessionize || DEFAULT_DESESSIONIZE
       end
 
+      # Set the session key under which the credentials are stored in
+      # the session.
       def session_key=(key)
         @session_key = key
       end
@@ -55,6 +57,8 @@ module WebLogin
         @session_key || :user_id
       end
 
+      # Set the URL where freshly signed out users are redirected to.
+      # By default, they go to the root of the site.
       def post_sign_out_url=(url)
         @post_sign_out_url = url
       end
