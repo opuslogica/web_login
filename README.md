@@ -12,13 +12,14 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Once you have bundled it, you should run the installation generator:
 
-    $ gem install web_login
+    $ rails generate web_login:install
 
 ## Usage
 
-TODO: Write usage instructions here
+Once installed, configure authorization/sign_up mechanisms in
+`config/initializers/web_login.rb`
 
 To add alternate sign in buttons (say, for Facebook), create a partial
 at `app/views/web_login/sessions/_alternate_sign_ins`.
