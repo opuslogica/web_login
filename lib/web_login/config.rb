@@ -65,6 +65,10 @@ module WebLogin
       def post_sign_out_url
         @post_sign_out_url || '/'
       end
+
+      def session_key_for_redirect_target
+        :web_login_finished_redirect_location
+      end
       
     end
   end

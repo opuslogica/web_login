@@ -30,6 +30,7 @@ module WebLogin
     end
     
     def authenticate!
+      session[WebLogin::Config.session_key_for_redirect_target] = request.fullpath
       redirect_to web_login.sign_in_url unless self.authenticated?
     end
 
