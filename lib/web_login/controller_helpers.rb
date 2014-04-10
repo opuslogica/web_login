@@ -30,7 +30,7 @@ module WebLogin
     end
     
     def authenticate!
-      redirect_to web_login_sign_in unless self.authenticated?
+      redirect_to web_login.sign_in_url unless self.authenticated?
     end
 
     def authenticated=(user)
