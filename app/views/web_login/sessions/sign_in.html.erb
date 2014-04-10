@@ -1,10 +1,10 @@
-User: <%= @user_object rescue "NONEEEEEE" %>
-
+<%= flash[:error] if flash[:error]%>
 <%= form_tag '' do  %>
 <%= label_tag "login", "Login" %>
 <%= email_field_tag "login" , @params[:login]  %>
 <%= label_tag "password", "Password"  %>
 <%= password_field_tag "password" %>
+<%= hidden_field_tag "return-to", @return_to %>
 <div>
 <%= submit_tag 'Sign In' %>
 </div>
