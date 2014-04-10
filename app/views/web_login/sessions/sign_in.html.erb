@@ -1,0 +1,15 @@
+User: <%= @user_object rescue "NONEEEEEE" %>
+
+<%= form_tag '' do  %>
+<%= label_tag "login", "Login" %>
+<%= email_field_tag "login" , @params[:login]  %>
+<%= label_tag "password", "Password"  %>
+<%= password_field_tag "password" %>
+<div>
+<%= submit_tag 'Sign In' %>
+</div>
+<%= render :partial => "alternate_sign_ins" %>
+<% end %>
+<% if WebLogin::Config.sign_up_with %>
+<%= link_to "Sign Up",'sign_up' %>
+<% end %>

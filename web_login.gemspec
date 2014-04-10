@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = WebLogin::VERSION
   spec.authors       = ["Daniel Staudigel"]
   spec.email         = ["dstaudigel@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Write a gem description}
+  spec.summary       = %q{Write a gem summary}
   spec.homepage      = ""
   spec.license       = "MIT"
 

@@ -1,0 +1,25 @@
+module WebLogin
+  class SessionsController < WebLoginController
+    def sign_in
+      @params = params
+      @user_object = instance_eval(&WebLogin::Config.authenticate_with)
+      WebLogin.set_authenticated(session,@user_object)
+    end
+
+    def sign_out
+      WebLogin.set_authenticated(session,nil)
+      redirect_to WebLogin::Config.post_sign_out_url
+    end
+    
+    def sign_up
+      @params = params
+      sign_up_with = WebLogin::Config.sign_up_with
+      
+      if sign_up_with
+        instance_eval(&sign_up_with) 
+      else
+        flash :error => "No sign up callback"
+      end
+    end
+  end
+end
