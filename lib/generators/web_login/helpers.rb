@@ -1,12 +1,12 @@
 module WebLogin
   module Generators
     module Helpers
-      def initializer_path name
+      def initializer_path(name)
         File.join('config','initializers',name)
       end
       
       def application_controller_path
-        File.join("app",'controller','application_controller.rb')
+        File.join("app",'controllers','application_controller.rb')
       end
 
       def routes_path
