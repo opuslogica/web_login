@@ -37,6 +37,18 @@ WebLogin.config do |config|
     Credential.create(:email => @params[:login],:password => @params[:password])
   end
 
+  # You may also elect to use OmniAuth to allow for user sign in and
+  # sign up.  To connect these dots, you must add a glue-function to
+  # connect to whatever authentication package you are using.
+
+  config.omniauth_with do
+    Credential.authenticate_oauth(:email => @email, :provider => @provider, :uid => @uid)
+  end
+
+  # Built-in support for facebook requires that you simply add in the
+  # app ID and app secret for your app:
+  # config.use_facebook app_id: '<APP_ID>', app_secret: '<APP SECRET>'
+
   # Other options:
   #
   # You may read about the other options in lib/web_login/config.rb
