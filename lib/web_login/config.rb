@@ -1,3 +1,6 @@
+require "omniauth"
+require "omniauth-facebook"
+
 module WebLogin
   module Config
     DEFAULT_AUTHENTICATION = proc { logger.info "Default authenticator does nothing..."; nil }
@@ -12,10 +15,11 @@ module WebLogin
     }
 
     DEFAULT_DESESSIONIZE = proc { |session_data| 
-      split = session_data.split("$$")
-      model_name = split[0]
-      model_id = split[1]
-      model_name.constantize.find(model_id)
+      split = session_data.split("$$") if session_data
+      model_name = split[0] if split
+      model_id = split[1] if split
+      puts "Finding #{model_name}/#{model_id}"
+      model_name.constantize.find(model_id) if model_name && model_id
     }
 
     class << self
@@ -30,6 +34,12 @@ module WebLogin
       def sign_up_with(&blk)
         @signup = blk if blk
         @signup
+      end
+
+      # Set the omniauth callback, which by default does not exist
+      def omniauth_with(&blk)
+        @omniauth_cb = blk if blk
+        @omniauth_cb
       end
 
       # Set the callback by which referenced credentials are stored in
@@ -70,6 +80,16 @@ module WebLogin
         :web_login_finished_redirect_location
       end
       
+      def use_facebook(hash)
+        @using_facebook = true
+        Rails.application.config.middleware.use OmniAuth::Builder do
+          provider :facebook, hash[:app_id], hash[:app_secret], hash
+        end
+      end
+
+      def use_facebook?
+        @using_facebook
+      end
     end
   end
 end

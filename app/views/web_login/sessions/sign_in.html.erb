@@ -7,6 +7,9 @@
 <%= hidden_field_tag "return-to", @return_to %>
 <div>
 <%= submit_tag 'Sign In' %>
+<% if WebLogin::Config.use_facebook? %>
+<a href="/auth/facebook">Sign in with facebook</a>
+<% end %>
 </div>
 <%= render :partial => "alternate_sign_ins" %>
 <% end %>

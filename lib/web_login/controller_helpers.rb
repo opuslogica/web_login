@@ -4,12 +4,13 @@ module WebLogin
       authenticated = nil
 
       session_value = session[WebLogin::Config.session_key]
-      logger.info "Got session value #{session_value}"
-      begin
+      # logger.info "Got session value #{session_value}"
+      
+      #      begin
         authenticated = WebLogin::Config.desessionize_with.call(session_value)
-      rescue => e
-        logger.error e
-      end
+      # rescue => e
+      #   logger.error e
+      # end
 
       authenticated
     end
