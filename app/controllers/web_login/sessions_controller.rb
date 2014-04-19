@@ -3,7 +3,6 @@ module WebLogin
     def finish
       WebLogin.set_authenticated(session,@user_object)
 
-      flash[:message] = "YOur user object: #{@user_object}"
       if(@user_object) 
         redirect_to session[WebLogin::Config.session_key_for_redirect_target] || '/'
       else
@@ -34,7 +33,11 @@ module WebLogin
       sign_up_with = WebLogin::Config.sign_up_with
       
       if sign_up_with
-        @user_object = instance_eval(&sign_up_with) 
+        if params.has_key?(:login) && params.has_key?(:password)
+          @user_object = instance_eval(&sign_up_with) 
+        else
+          return
+        end
       else
         flash[:error] = "No sign up callback"
       end
