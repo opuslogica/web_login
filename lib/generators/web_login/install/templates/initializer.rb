@@ -34,7 +34,7 @@ WebLogin.config do |config|
     # For our purposes, we will assume that a Credential object can be
     # created with an email and a password.
     
-    Credential.create(:email => @params[:login],:password => @params[:password])
+    Credential.sign_up(@params[:login],@params[:password])
   end
 
   # You may also elect to use OmniAuth to allow for user sign in and
