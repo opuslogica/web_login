@@ -1,9 +1,9 @@
 module WebLogin
   class SessionsController < WebLoginController
     def finish
-      WebLogin.set_authenticated(session,@user_object)
+      WebLogin.set_authenticated(session, @user_object)
 
-      if(@user_object) 
+      if (@user_object) 
         redirect_to session[WebLogin::Config.session_key_for_redirect_target] || '/'
       else
         flash[:error] = "Incorrect credentials."
@@ -14,13 +14,10 @@ module WebLogin
       @return_to = session[WebLogin::Config.session_key_for_redirect_target]
       @params = params
 
-      if(params[:commit])
+      if (params[:commit])
         @user_object = instance_eval(&WebLogin::Config.authenticate_with)
         finish
-      else
-        
       end
-
     end
 
     def sign_out
@@ -51,6 +48,7 @@ module WebLogin
       
       @uid = @auth[:uid]
       @email = @auth[:info][:email]
+      @email = @email.downcase if @email.present?
       
       omniauth_with = WebLogin::Config.omniauth_with
 
@@ -62,7 +60,5 @@ module WebLogin
 
       finish
     end
-
   end
-
 end
