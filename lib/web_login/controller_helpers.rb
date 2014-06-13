@@ -6,11 +6,12 @@ module WebLogin
       session_value = session[WebLogin::Config.session_key]
       # logger.info "Got session value #{session_value}"
       
-      #      begin
+      begin
         authenticated = WebLogin::Config.desessionize_with.call(session_value)
-      # rescue => e
-      #   logger.error e
-      # end
+      rescue => e
+        flash[:error] = "There was an error with your session.  Please log in again."
+        logger.error e
+      end
 
       authenticated
     end
