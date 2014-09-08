@@ -9,7 +9,7 @@ module WebLogin
       begin
         authenticated = WebLogin::Config.desessionize_with.call(session_value)
       rescue => e
-        flash[:error] = "There was an error with your session.  Please log in again."
+        flash.now[:error] = "There was an error with your session.  Please log in again."
         logger.error e
       end
 

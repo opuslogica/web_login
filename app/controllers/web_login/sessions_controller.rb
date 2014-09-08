@@ -6,7 +6,7 @@ module WebLogin
       if (@user_object) 
         redirect_to session[WebLogin::Config.session_key_for_redirect_target] || '/'
       else
-        flash[:error] = "Incorrect credentials."
+        flash.now[:error] = "Incorrect credentials."
       end
     end
       
@@ -36,7 +36,7 @@ module WebLogin
           return
         end
       else
-        flash[:error] = "No sign up callback"
+        flash.now[:error] = "No sign up callback"
       end
 
       finish
@@ -55,7 +55,7 @@ module WebLogin
       if omniauth_with
         @user_object = instance_eval(&omniauth_with)
       else
-        flash[:error] = "No omniauth callback"
+        flash.now[:error] = "No omniauth callback"
       end
 
       finish
