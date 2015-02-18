@@ -72,7 +72,6 @@ module WebLogin
 
       if omniauth_with
         results = instance_eval(&omniauth_with)
-        Rails.logger.debug "RESULTS" + results.join(",")
         if results[0].nil?
           flash[:error] = results[1]
         else
