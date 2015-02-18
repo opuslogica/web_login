@@ -75,7 +75,35 @@ module WebLogin
       def post_sign_out_url
         @post_sign_out_url || '/'
       end
-
+      
+      # Set the URL where freshly signed IN users are redirected to.
+      # By default, they go to the root of the site. or can be directed
+      # by WebLogin::Config.session_key_for_redirect_target
+      def post_sign_in_url=(url)
+        @post_sign_in_url = url
+      end
+      def post_sign_in_url
+        @post_sign_in_url || '/'
+      end
+      # Set the URL where freshly signed UP users are redirected to.
+      # By default, they go to the root of the site. or can be directed
+      # by WebLogin::Config.session_key_for_redirect_target      
+      def post_sign_up_url=(url)
+        @post_sign_up_url = url
+      end
+      def post_sign_up_url
+        @post_sign_up_url || '/'
+      end
+      # Set the URL where freshly signed IN/UP via Facebook (or other) users are redirected to.
+      # By default, they go to the root of the site. or can be directed
+      # by WebLogin::Config.session_key_for_redirect_target
+      def post_platform_sign_in_url=url
+        @post_platform_sign_in_url = url
+      end      
+      def post_platform_sign_in_url
+        @post_platform_sign_in_url || '/'
+      end      
+      
       def session_key_for_redirect_target
         :web_login_finished_redirect_location
       end

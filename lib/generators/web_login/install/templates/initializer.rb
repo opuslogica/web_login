@@ -42,7 +42,7 @@ WebLogin.config do |config|
   # connect to whatever authentication package you are using.
 
   config.omniauth_with do
-    Credential.authenticate_oauth(:email => @email, :provider => @provider, :uid => @uid)
+    Credential.authenticate_oauth(:email => @email, :provider => @provider, :uid => @uid, :name => @name)
   end
 
   # Built-in support for facebook requires that you simply add in the

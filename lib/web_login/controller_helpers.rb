@@ -1,5 +1,6 @@
 module WebLogin
   module ControllerHelpers
+    
     def get_authenticated_from_session
       authenticated = nil
 
