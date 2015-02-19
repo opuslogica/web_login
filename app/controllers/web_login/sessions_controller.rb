@@ -73,7 +73,7 @@ module WebLogin
       if omniauth_with
         results = instance_eval(&omniauth_with)
         if results[0].nil?
-          flash[:error] = results[1]
+          flash.now[:error] = results[1]
         else
           @user_object = results[0]
         end
