@@ -43,3 +43,9 @@ module WebLogin
     end
   end
 end
+
+if defined? ActionController::Base
+  ActionController::Base.class_eval do
+    include WebLogin::ControllerHelpers
+  end
+end

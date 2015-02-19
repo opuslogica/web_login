@@ -13,11 +13,11 @@ module WebLogin
         template "initializer.rb", File.join('config','initializers','web_login.rb')
       end
       
-      def update_app_controller
-        inject_into_class application_controller_path , ApplicationController do
-          "  include WebLogin::ControllerHelpers\n"
-        end
-      end
+      #def update_app_controller
+      #  inject_into_class application_controller_path , ApplicationController do
+      #    "  include WebLogin::ControllerHelpers\n"
+      #  end
+      #end
 
       def mount_engine
         inject_into_file routes_path, :after => "Application.routes.draw do\n" do
