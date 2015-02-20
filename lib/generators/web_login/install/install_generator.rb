@@ -25,6 +25,13 @@ module WebLogin
         end
       end
 
+      
+      def add_style
+        insert_into_file "app/assets/stylesheets/application.css.scss", :before => "*/" do
+          "\n *= require 'web_login'\n\n"
+        end
+      end
+      
     end
   end
 end

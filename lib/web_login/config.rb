@@ -118,6 +118,16 @@ module WebLogin
       def use_facebook?
         @using_facebook
       end
+      
+      
+      # layout to use in controller actions
+      def layout=(layout)
+        @layout = layout
+      end
+      def layout
+        @layout || 'application'
+      end
+      
     end
   end
 end

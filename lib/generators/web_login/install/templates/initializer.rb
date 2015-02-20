@@ -57,4 +57,9 @@ WebLogin.config do |config|
   # de-sessionization of credential objects (they are by default
   # treated as ActiveRecord objects).  Post-sign-out destinations,
   # etc.
+  
+  # layout page to use for views
+  # defaults to "application"
+  #config.layout = 'application'
+  
 end

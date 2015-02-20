@@ -1,12 +1,14 @@
-<%= form_tag '' do  %>
-<%= label_tag "login", "Login" %>
-<%= email_field_tag "login" , @params[:login]  %>
-<%= label_tag "password", "Password"  %>
-<%= password_field_tag "password" %>
-<%= label_tag "password_confirmation", "Confirm Password"  %>
-<%= password_field_tag "password" %>
+<div class='oli-sign-up'>
+  <%= form_tag '' do  %>
+  <%= label_tag "login", "Login" %>
+  <%= email_field_tag "login" , @params[:login]  %>
+  <%= label_tag "password", "Password"  %>
+  <%= password_field_tag "password" %>
+  <%= label_tag "password_confirmation", "Confirm Password"  %>
+  <%= password_field_tag "password" %>
 
-<div>
-<%= submit_tag 'Sign Up' %>
+  <div>
+  <%= submit_tag 'Sign Up', class: 'btn btn-primary' %>
+  </div>
+  <% end %>
 </div>
-<% end %>

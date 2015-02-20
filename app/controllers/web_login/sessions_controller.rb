@@ -1,12 +1,14 @@
 module WebLogin
   class SessionsController < WebLoginController
+    layout WebLogin::Config.layout
+    
     def finish
       WebLogin.set_authenticated(session, @user_object)
 
       if (@user_object) 
         redirect_to session[WebLogin::Config.session_key_for_redirect_target] || '/'
       #else
-        #flash.now[:error] = "Incorrect credentials."
+        #flash[:error] = "Incorrect credentials."
       end
     end
       
@@ -39,19 +41,19 @@ module WebLogin
       #basic validation here so we dont have to do it in the apps
       if !params["login"].blank? && !params["password"].blank? && !params["password_confirm"].blank?
         if params["password"] != params["password_confirm"]
-          flash.now[:error] = "Your passwords do not match"
+          flash[:error] = "Your passwords do not match"
         else          
           sign_up_with = WebLogin::Config.sign_up_with
       
           if sign_up_with
             results = instance_eval(&sign_up_with) 
             if results[0].nil?
-              flash.now[:error] = results[1]
+              flash[:error] = results[1]
             else
               @user_object = results[0]
             end
           else
-            flash.now[:error] = "No sign up callback"
+            flash[:error] = "No sign up callback"
           end
         end
         finish
@@ -73,12 +75,12 @@ module WebLogin
       if omniauth_with
         results = instance_eval(&omniauth_with)
         if results[0].nil?
-          flash.now[:error] = results[1]
+          flash[:error] = results[1]
         else
           @user_object = results[0]
         end
       else
-        flash.now[:error] = "No omniauth callback"
+        flash[:error] = "No omniauth callback"
       end
       if !@user_object
         render 'sign_in'
