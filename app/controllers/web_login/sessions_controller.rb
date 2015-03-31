@@ -46,11 +46,11 @@ module WebLogin
           sign_up_with = WebLogin::Config.sign_up_with
       
           if sign_up_with
-            results = instance_eval(&sign_up_with) 
-            if results[0].nil?
-              flash[:error] = results[1]
+            @results = instance_eval(&sign_up_with) 
+            if @results[0].nil?
+              flash[:error] = @results[1]
             else
-              @user_object = results[0]
+              @user_object = @results[0]
             end
           else
             flash[:error] = "No sign up callback"
@@ -73,11 +73,11 @@ module WebLogin
       omniauth_with = WebLogin::Config.omniauth_with
 
       if omniauth_with
-        results = instance_eval(&omniauth_with)
-        if results[0].nil?
-          flash[:error] = results[1]
+        @results = instance_eval(&omniauth_with)
+        if @results[0].nil?
+          flash[:error] = @results[1]
         else
-          @user_object = results[0]
+          @user_object = @results[0]
         end
       else
         flash[:error] = "No omniauth callback"
